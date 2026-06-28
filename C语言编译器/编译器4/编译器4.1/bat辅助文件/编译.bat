@@ -1,0 +1,27 @@
+@echo off
+if exist .\运行环境 call .\bat辅助文件\清除编译文件.bat
+echo=
+echo=
+echo=
+echo 开始编译
+echo=
+echo -----------------------------------------------
+python .\Python辅助文件\编译.py build --build-base 运行环境\build
+echo=
+echo 编译完成，复制文件到运行文件夹
+copy .\Python辅助文件\运行.py .\运行环境
+copy .\运行环境\build\lib.win-amd64-cpython-39\CCall.cp39-win_amd64.pyd .\运行环境
+echo -----------------------------------------------
+echo=
+if exist .\运行环境\CCall.cp39-win_amd64.pyd (
+        echo=
+        echo 编译过程已完成，请查看编译信息
+        echo=
+) else (
+        echo=
+        echo 编译失败，请重新编辑程序后重新编译
+        echo=
+)
+echo=
+echo=
+pause
